@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tft/pages/home/home.dart';
+import 'package:flutter_tft/views/home/home.dart';
 
 void main() {
   runApp(const MyApp());

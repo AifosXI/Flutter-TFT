@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_tft/pages/home/widgets/new-champions.dart';
-import 'package:flutter_tft/pages/home/widgets/new-synergies.dart';
-import 'package:flutter_tft/pages/home/widgets/title.dart';
+import 'package:flutter_tft/views/home/widgets/new-champions.dart';
+import 'package:flutter_tft/views/home/widgets/new-synergies.dart';
+import 'package:flutter_tft/views/home/widgets/title.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
