@@ -4,7 +4,8 @@ import 'package:flutter_tft/views/auth/signin_view.dart';
 import 'package:flutter_tft/views/auth/signup_view.dart';
 import 'package:flutter_tft/views/home/homepage_content.dart';
 import 'package:flutter_tft/views/informations/informations.dart';
-import 'package:flutter_tft/views/profile_view.dart';
+
+import '../profile/profile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     const Informations(),
     const SignupView(),
     const Informations(),
-    SigninView(),
+    const Profile(),
   ];
 
   void _onItemTapped(int index) {
@@ -93,7 +94,7 @@ class _HomePageState extends State<HomePage> {
               return MaterialPageRoute(builder: (_) => SigninView());
 
             case "profile":
-              return MaterialPageRoute(builder: (_) => ProfileView());
+              return MaterialPageRoute(builder: (_) => const Profile());
           }
         } else {
           return MaterialPageRoute(builder: (_) => _widgetOptions.elementAt(_selectedIndex));
