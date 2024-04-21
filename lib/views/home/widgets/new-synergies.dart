@@ -6,7 +6,7 @@ import 'package:flutter_tft/models/synergies.dart';
 class NewSynergiesData extends StatelessWidget {
   NewSynergiesData({super.key});
 
-  final List<Synergies> synergies = Synergies('', '',).synergies();
+  final List<Synergies> synergies = Synergies('', '', '', [], []).synergies();
 
   @override
   Widget build(BuildContext context) {
