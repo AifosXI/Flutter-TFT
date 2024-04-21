@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
     const HomepageContent(),
     const Informations(),
     const SignupView(),
+    const Informations(),
     SigninView(),
   ];
 

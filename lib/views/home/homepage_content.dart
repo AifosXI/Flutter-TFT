@@ -13,7 +13,7 @@ class HomepageContent extends StatelessWidget {
       body: SingleChildScrollView(
         padding: EdgeInsets.only(
           top: MediaQuery.of(context).padding.top,
-          bottom: 50,
+          bottom: (kBottomNavigationBarHeight + 20),
         ),
         child: Stack(
           children: [

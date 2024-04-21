@@ -1,12 +1,17 @@
+import 'dart:ffi';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_tft/views/home/widgets/title.dart';
 import 'package:flutter_tft/views/informations/widgets/champions.dart';
+import 'package:flutter_tft/views/informations/widgets/synergies.dart';
 
 class Informations extends StatelessWidget {
   static String routeName = '/informations';
 
   const Informations({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -29,7 +34,7 @@ class Informations extends StatelessWidget {
               child: TabBarView(
                 children: [
                   ChampionsList(),
-                  const Center(child: Text('Synergies')),
+                  SynergiesList(),
                   const Center(child: Text('Items')),
                 ],
               ),
