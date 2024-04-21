@@ -1,10 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tft/views/auth/signin_view.dart';
 import 'package:flutter_tft/views/auth/signup_view.dart';
 import 'package:flutter_tft/views/home/homepage_content.dart';
+import 'package:flutter_tft/views/informations/informations.dart';
 import 'package:flutter_tft/views/profile_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,10 +19,13 @@ class _HomePageState extends State<HomePage> {
     0: GlobalKey<NavigatorState>(),
     1: GlobalKey<NavigatorState>(),
     2: GlobalKey<NavigatorState>(),
+    3: GlobalKey<NavigatorState>(),
+    4: GlobalKey<NavigatorState>(),
   };
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomepageContent(),
+    const Informations(),
     const SignupView(),
     SigninView(),
   ];
@@ -48,18 +50,27 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color(0xFF56496b),
       showUnselectedLabels: false,
       showSelectedLabels: false,
+      type: BottomNavigationBarType.fixed,
       items:
       [
         const BottomNavigationBarItem(
-          icon: Icon(Icons.home, color: Colors.white, size: 40),
+          icon: Icon(Icons.home_rounded, color: Colors.white, size: 35),
           label: '',
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset('assets/vectors/add-round.svg'),
+          icon: SvgPicture.asset('assets/vectors/champions.svg', width: 30,),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset('assets/vectors/add-round.svg', width: 30,),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset('assets/vectors/synergies.svg', width: 30,),
           label: '',
         ),
         const BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle_rounded, color: Colors.white, size: 40),
+          icon: Icon(Icons.person_rounded, color: Colors.white, size: 35),
           label: '',
         ),
       ],
