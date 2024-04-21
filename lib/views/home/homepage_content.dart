@@ -20,12 +20,9 @@ class HomepageContent extends StatelessWidget {
             Column(
               children: [
                 Image.asset('assets/images/home_banner.jpg'),
-                const CustomTitle(),
+                const CustomTitle("Introduction", 20),
                 Container(
-                  padding: const EdgeInsets.only(
-                      right: 10,
-                      left: 10
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     children: [
                       const Text("TFT est un jeu développé par Riot Games, l’entreprise qui a développé le jeu League of Legends. \n\nTFT est un jeu d’échec mais avec des champions à la place !\n\nTout les 4 mois environ, un nouveau set sort avec de nouveaux champions et des nouvelles synergies !"),

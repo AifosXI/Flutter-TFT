@@ -4,7 +4,7 @@ import 'package:flutter_tft/models/champions.dart';
 class NewChampionsData extends StatelessWidget {
   NewChampionsData({super.key});
 
-  final List<Champions> champions = Champions('', '', []).champions();
+  final List<Champions> champions = Champions('', '', [], '', 0).champions();
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +54,8 @@ class NewChampionsData extends StatelessWidget {
                                     ),
                                   ),
                                   Positioned(
+                                    left: 5,
+                                    bottom: 5,
                                     child: getChampionsTraits(champions[index]),
                                   )
                                 ],
@@ -72,23 +74,34 @@ class NewChampionsData extends StatelessWidget {
   }
 
   Widget getChampionsTraits(champion) {
-    return Container(
-        padding: const EdgeInsets.all(2),
-        decoration: BoxDecoration(
-            color: const Color(0xFF56496b),
-            borderRadius: BorderRadius.circular(20)
-        ),
-        child: Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for(int i = 0; i < champion.traits.length; i++ ) Column(
           children: [
-            for (int i = 0; i < champion.traits.length; i++) Container(
-              margin: const EdgeInsets.only(top: 2, bottom: 2),
-              child: SizedBox(
-                width: 16,
-                height: 16,
-                child: Image.asset(champion.traits[i]['icon']),
-              ),),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF56496b),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: Image.asset(champion.traits[i]['icon']),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 3),
           ],
         )
+      ],
     );
   }
 }

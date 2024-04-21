@@ -1,17 +1,12 @@
 import 'dart:ui';
 
-import 'package:flutter/animation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_tft/views/auth/widgets/button-redirect.dart';
 import 'package:flutter_tft/views/auth/widgets/custom-input.dart';
 import '../../models/signup_form_model.dart';
 
 class SignupView extends StatefulWidget {
-  static String routeName = 'signup';
+  static String routeName = '/signup';
 
   const SignupView({super.key});
 
