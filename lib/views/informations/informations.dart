@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_tft/views/home/widgets/title.dart';
 import 'package:flutter_tft/views/informations/widgets/champions.dart';
+import 'package:flutter_tft/views/informations/widgets/items.dart';
 import 'package:flutter_tft/views/informations/widgets/synergies.dart';
 
 class Informations extends StatelessWidget {
@@ -35,7 +36,7 @@ class Informations extends StatelessWidget {
                 children: [
                   ChampionsList(),
                   SynergiesList(),
-                  const Center(child: Text('Items')),
+                  ItemsList(),
                 ],
               ),
             )
