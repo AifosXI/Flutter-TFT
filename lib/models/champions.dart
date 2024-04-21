@@ -66,6 +66,66 @@ class Champions {
           ],
         'assets/images/Caitlyn_full.png',
         5
+      ),
+      Champions(
+          'Lissandra',
+          'assets/images/Lissandra.png',
+          [
+            {'name': 'Porcelaine', 'icon': 'assets/images/Porcelain.png'},
+            {'name': 'Arcaniste', 'icon': 'assets/images/Arcanist.png'},
+          ],
+        'assets/images/Caitlyn_full.png',
+        5
+      ),
+      Champions(
+          'Lissandra',
+          'assets/images/Lissandra.png',
+          [
+            {'name': 'Porcelaine', 'icon': 'assets/images/Porcelain.png'},
+            {'name': 'Arcaniste', 'icon': 'assets/images/Arcanist.png'},
+          ],
+        'assets/images/Caitlyn_full.png',
+        5
+      ),
+      Champions(
+          'Lissandra',
+          'assets/images/Lissandra.png',
+          [
+            {'name': 'Porcelaine', 'icon': 'assets/images/Porcelain.png'},
+            {'name': 'Arcaniste', 'icon': 'assets/images/Arcanist.png'},
+          ],
+        'assets/images/Caitlyn_full.png',
+        5
+      ),
+      Champions(
+          'Lissandra',
+          'assets/images/Lissandra.png',
+          [
+            {'name': 'Porcelaine', 'icon': 'assets/images/Porcelain.png'},
+            {'name': 'Arcaniste', 'icon': 'assets/images/Arcanist.png'},
+          ],
+        'assets/images/Caitlyn_full.png',
+        5
+      ),
+      Champions(
+          'Lissandra',
+          'assets/images/Lissandra.png',
+          [
+            {'name': 'Porcelaine', 'icon': 'assets/images/Porcelain.png'},
+            {'name': 'Arcaniste', 'icon': 'assets/images/Arcanist.png'},
+          ],
+        'assets/images/Caitlyn_full.png',
+        5
+      ),
+      Champions(
+          'Lissandra',
+          'assets/images/Lissandra.png',
+          [
+            {'name': 'Porcelaine', 'icon': 'assets/images/Porcelain.png'},
+            {'name': 'Arcaniste', 'icon': 'assets/images/Arcanist.png'},
+          ],
+        'assets/images/Caitlyn_full.png',
+        5
       )
     ];
   }
