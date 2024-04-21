@@ -4,6 +4,7 @@ import 'package:flutter_tft/views/auth/signin_view.dart';
 import 'package:flutter_tft/views/auth/signup_view.dart';
 import 'package:flutter_tft/views/home/homepage_content.dart';
 import 'package:flutter_tft/views/informations/informations.dart';
+import 'package:flutter_tft/views/team/create_team.dart';
 
 import '../profile/profile.dart';
 
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomepageContent(),
     const Informations(),
-    const SignupView(),
+    const CreateTeam(),
     const Informations(),
     const Profile(),
   ];
@@ -95,6 +96,9 @@ class _HomePageState extends State<HomePage> {
 
             case "profile":
               return MaterialPageRoute(builder: (_) => const Profile());
+
+            case "create-team":
+              return MaterialPageRoute(builder: (_) => const CreateTeam());
           }
         } else {
           return MaterialPageRoute(builder: (_) => _widgetOptions.elementAt(_selectedIndex));

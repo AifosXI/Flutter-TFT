@@ -14,7 +14,7 @@ class CustomTitle extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset('assets/images/left_cloud.png', width: 93),
-          Text(title, style: TextStyle(fontWeight: FontWeight.w700, fontSize: fontSize)),
+          Text(title, style: TextStyle(fontWeight: FontWeight.w700, fontSize: fontSize, color: const Color(0xFF56496B))),
           Image.asset('assets/images/right_cloud.png', width: 93),
         ]
     );
