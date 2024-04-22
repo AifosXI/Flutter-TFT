@@ -3,10 +3,22 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_tft/models/synergies.dart';
 
-class NewSynergiesData extends StatelessWidget {
+class NewSynergiesData extends StatefulWidget {
   NewSynergiesData({super.key});
 
-  final List<Synergies> synergies = Synergies('', '', '', [], []).synergies();
+  @override
+  State<NewSynergiesData> createState() => _NewSynergiesData();
+}
+
+class _NewSynergiesData extends State<NewSynergiesData> with AutomaticKeepAliveClientMixin
+{
+  late Future<List<Synergies>> synergies;
+
+  @override
+  void initState() {
+    super.initState();
+    synergies = Synergies(apiName: '', name: '',description: '', icon: '', step: [], champions: []).getAllSynergies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,58 +45,74 @@ class NewSynergiesData extends StatelessWidget {
                 ),
               ],)
         ),
-        SizedBox(
-            height: 100,
-            child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: ((context, index) =>
-                    GestureDetector(
-                        onTap: (() => print('Clicked')),
-                        child: Column(
-                            children: [
-                              Stack(
-                                children: [
-                                  ClipPath(
-                                      clipper: Hexagon(),
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: [
-                                              Color(0xFF56496b),
-                                              Color(0xFFA26BA2),
-                                              Color(0xFFE188E1),
-                                            ]
-                                          ),
+        FutureBuilder<List<Synergies>?>(
+            future: synergies,
+            builder: (context, snapshot) {
+              if(snapshot.hasError) {
+                print(snapshot);
+                return const Text('Une erreur est survenue, veuillez réessayer.');
+              }
+              if (!snapshot.hasData) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              final synergies = snapshot.data!;
+              return SizedBox(
+                  height: 100,
+                  child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: ((context, index) =>
+                          GestureDetector(
+                              onTap: (() => print('Clicked')),
+                              child: Column(
+                                  children: [
+                                    Stack(
+                                      children: [
+                                        ClipPath(
+                                            clipper: Hexagon(),
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                gradient: LinearGradient(
+                                                    begin: Alignment.topCenter,
+                                                    end: Alignment.bottomCenter,
+                                                    colors: [
+                                                      Color(0xFF56496b),
+                                                      Color(0xFFA26BA2),
+                                                      Color(0xFFE188E1),
+                                                    ]
+                                                ),
+                                              ),
+                                              child: const SizedBox(
+                                                width: 70,
+                                                height: 70,
+                                              ),
+                                            )
                                         ),
-                                        child: const SizedBox(
-                                            width: 70,
-                                            height: 70,
-                                        ),
-                                      )
-                                  ),
-                                  Positioned(
-                                      top: 0,
-                                      left: 0,
-                                      right: 0,
-                                      bottom: 10,
-                                      child: Image.asset(synergies[index].icon, width: 65)
-                                  )
-                                ],
-                              ),
-                              Text(synergies[index].name),
-                            ]
-                        )
-                    )
-                ),
-                separatorBuilder: ((context, index) => const SizedBox(width: 10)),
-                itemCount: synergies.length
-            )
-        ),
+                                        Positioned(
+                                            top: 0,
+                                            left: 0,
+                                            right: 0,
+                                            bottom: 10,
+                                            child: Image.network(synergies[index].icon ?? '', width: 65)
+                                        )
+                                      ],
+                                    ),
+                                    Text(synergies[index].name ?? ''),
+                                  ]
+                              )
+                          )
+                      ),
+                      separatorBuilder: ((context, index) => const SizedBox(width: 10)),
+                      itemCount: synergies.length
+                  )
+              );
+            }
+        )
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class Hexagon extends CustomClipper<Path> {

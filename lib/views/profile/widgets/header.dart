@@ -53,7 +53,7 @@ class Header extends StatelessWidget {
                                   ),
                                 )
                             ),
-                            const Text('Aifos', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontFamily: "GillSansMT"),),
+                            const Text('John Doe', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontFamily: "GillSansMT"),),
                           ],
                         ),
                       ),

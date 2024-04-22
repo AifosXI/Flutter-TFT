@@ -8,11 +8,17 @@ import 'package:flutter_tft/views/informations/widgets/champions.dart';
 import 'package:flutter_tft/views/informations/widgets/items.dart';
 import 'package:flutter_tft/views/informations/widgets/synergies.dart';
 
-class Informations extends StatelessWidget {
+class Informations extends StatefulWidget {
   static String routeName = '/informations';
 
   const Informations({super.key});
 
+  @override
+  State<Informations> createState() => _Informations();
+}
+
+class _Informations extends State<Informations> with AutomaticKeepAliveClientMixin
+{
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -43,4 +49,7 @@ class Informations extends StatelessWidget {
         )
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
