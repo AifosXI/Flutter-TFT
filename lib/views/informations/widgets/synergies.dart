@@ -74,7 +74,7 @@ class _SynergiesList extends State<SynergiesList> with AutomaticKeepAliveClientM
                                           width: 20,
                                           child: Image.network(synergies[i].icon),
                                         ),
-                                        Text(synergies[i].name, style: const TextStyle(fontWeight: FontWeight.w700)),
+                                        Text(synergies[i].name, style: const TextStyle(fontWeight: FontWeight.w700, color: const Color(0xFF56496B))),
                                         SizedBox(
                                           height: 20,
                                           width: 20,
@@ -156,7 +156,7 @@ class _SynergiesList extends State<SynergiesList> with AutomaticKeepAliveClientM
           }
 
           if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator(color: Colors.white,));
           }
 
           final championsList = snapshot.data!;

@@ -7,64 +7,51 @@ class Teams {
   String name;
   String bgImage;
   List synergies;
-  List<Map<dynamic, dynamic>> champions;
+  final champions;
 
-  Teams(
-      this.name,
-      this.bgImage,
-      this.synergies,
-      this.champions,
-      );
+  Teams({
+    required this.name,
+    required this.bgImage,
+    required this.synergies,
+    required this.champions,
+  });
 
-  List<Teams> teams() {
-    return [
-      Teams(
-          'Ghostly Morgana Kayn Carry',
-          'assets/images/Caitlyn_full.png',
-          [
-            {
-              'synergy': Synergies(apiName: 'TFT11_',name: 'Ghostly', icon: 'assets/images/Ghostly.png', description: '', step: [] ,champions:[]),
-              'number': 4
-            },
-            {
-              'synergy':  Synergies(apiName: 'TFT11_',name: 'Porcelain', icon: 'assets/images/Porcelain.png', description: '', step: [] ,champions:[]),
-              'number': 4
-            },
-            {
-              'synergy':  Synergies(apiName: 'TFT11_',name: 'Reaper', icon: 'assets/images/Reaper.png', description: '', step: [] ,champions:[]),
-              'number': 2
-            },
-            {
-              'synergy':  Synergies(apiName: 'TFT11_',name: 'Bruiser', icon: 'assets/images/Bruiser.png', description: '', step: [] ,champions:[]),
-              'number': 2
-            },
-          ],
-          [
-            {
-              'champion':'',
-              'items': [
-                Items(
-                    'Morellonomicon',
-                    'assets/images/Morellonomicon.png',
-                    [
-                      'assets/images/GiantsBelt.png',
-                      'assets/images/NeedlesslyLargeRod.png',
-                    ],
-                    'Description Morello'
-                ),
-                Items(
-                    'Lame enragée de Guinsoo',
-                    'assets/images/GuinsoosRageblade.png',
-                    [
-                      'assets/images/NeedlesslyLargeRod.png',
-                      'assets/images/RecurveBow.png',
-                    ],
-                    'Les attaques du porteur lui octroient 5% de vitesse d\'attaque (effet cumulable).'
-                ),
-              ]
-            },
-          ]
-      ),
+  Future<List<Teams>> getTeamsForExample() async {
+    final synergy = Synergies(apiName: '', name: '', icon: '', description: '', step: [], champions: []);
+
+    final teamsSynergy = [
+      {
+        "name": 'Fantôme',
+        "bgImage": 'tft11_morgana.tft_set11.png',
+      },
+      {
+        "name": 'Porcelaine',
+        "bgImage": 'tft11_lissandra.tft_set11.png',
+      },
+      {
+        "name": "Guerrier d'encre",
+        "bgImage": "tft11_udyr.tft_set11.png"
+      }
     ];
+
+    final arrayTeams = [];
+
+    for(int i = 0; i < teamsSynergy.length; i++)
+    {
+      arrayTeams.add(
+          {
+            "name": "Démonstration équipe - ${teamsSynergy[i]['name']}",
+            "bgImage": "https://raw.communitydragon.org/latest/game/assets/ux/tft/championsplashes/${teamsSynergy[i]['bgImage']}",
+            "synergies": [teamsSynergy[i]],
+            "champions": synergy.getChampionsBySynergy(teamsSynergy[i]['name'], '')
+          });
+    }
+    return List.from(arrayTeams).map((e) => Teams.fromMap(e)).toList();
   }
+
+  Teams.fromMap(Map<String, dynamic> data)
+      : name = data['name'],
+        bgImage = data['bgImage'],
+        synergies = data['synergies'],
+        champions = data['champions'];
 }

@@ -25,8 +25,6 @@ class Champions {
         fullIcon = data['fullIcon'],
         cost = data['cost'];
 
-  List<Champions>? championsList;
-
   Future<List<Champions>> getAllChampions() async {
     final result = await http.get(Uri.parse('https://raw.communitydragon.org/latest/cdragon/tft/fr_fr.json'));
 
@@ -61,7 +59,6 @@ class Champions {
         }
       }
     }
-    championsList = List.from(arrayChampions).map((e) => Champions.fromMap(e)).toList();
 
     return List.from(arrayChampions).map((e) => Champions.fromMap(e)).toList();
   }
@@ -97,7 +94,6 @@ class Champions {
                     'description': '',
                     'step': [],
                     'champions': [],
-                    'bgSynergy':''
                   }
               );
             }
