@@ -35,7 +35,7 @@ class Champions {
 
     for(int i = 0; i < set11Champions.length; i++)
     {
-      if(set11Champions[i]['apiName'].contains('TFT11_'))
+      if(set11Champions[i]['apiName'].contains('TFT11_') && set11Champions[i]['traits'].length > 0)
       {
         const find = '.tex';
         const replaceWith = '.png';
@@ -43,8 +43,8 @@ class Champions {
 
         final newSquareIcon = set11Champions[i]['squareIcon']?.replaceAll(find, replaceWith).toLowerCase();
         final newFullIcon = set11Champions[i]['icon']?.replaceAll(find, replaceWith).toLowerCase();
-
         final tmp = synergies.getSynergyByName(set11Champions[i]['traits']);
+
 
         if(newFullIcon != null && newSquareIcon != null && !newFullIcon.contains('template') &&!newSquareIcon.contains('template') )
         {

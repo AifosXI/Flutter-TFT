@@ -4,7 +4,7 @@ import 'package:flutter_tft/models/champions.dart';
 import '../../../models/synergies.dart';
 
 class NewChampionsData extends StatelessWidget {
-  NewChampionsData({super.key});
+  const NewChampionsData({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +121,7 @@ class NewChampionsData extends StatelessWidget {
                         child: SizedBox(
                           width: 16,
                           height: 16,
-                          child: Image.network(synergies[i].icon ?? ''),
+                          child: Image.network(synergies[i].icon),
                         ),
                       ),
                     ],

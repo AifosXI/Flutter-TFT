@@ -1,11 +1,12 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:string_validator/string_validator.dart';
 
 class Synergies {
-  String? apiName;
-  String? name;
-  String? icon;
-  String? description;
+  String apiName;
+  String name;
+  String icon;
+  String description;
   List? step;
   List<dynamic>? champions;
 
@@ -21,31 +22,32 @@ class Synergies {
   List<dynamic>? synergiesList;
 
   Future<List<Synergies>?> getAllSynergies() async {
-    final result = await http.get(Uri.parse('https://raw.communitydragon.org/latest/cdragon/tft/fr_fr.json'));
+    final result = await http.get(Uri.parse('https://raw.communitydragon.org/14.8/plugins/rcp-be-lol-game-data/global/fr_fr/v1/tfttraits.json'));
 
     final json = jsonDecode(utf8.decode(result.bodyBytes));
 
-    final set11Traits = json['setData'][2]['traits'];
+    final set11Traits = json;
     final arraySynergies = [];
 
     for(int i = 0; i < set11Traits.length; i++)
     {
-      if(set11Traits[i]['apiName'].contains('TFT11_'))
+      if(set11Traits[i]['trait_id'].contains('TFT11_'))
       {
+        print(set11Traits[i]['trait_id']);
         const find = '.tex';
         const replaceWith = '.png';
         const assetsUrl = 'https://raw.communitydragon.org/latest/game/';
 
-        final newIcon = set11Traits[i]['icon']?.replaceAll(find, replaceWith).toLowerCase();
+        final newIcon = set11Traits[i]['icon_path']?.replaceAll(find, replaceWith).toLowerCase().replaceFirst('/lol-game-data/assets/','');
 
         if(newIcon != null)
         {
           arraySynergies.add(
               {
-                'name': set11Traits[i]['name'],
-                'apiName': set11Traits[i]['apiName'],
+                'name': set11Traits[i]['display_name'],
+                'apiName': set11Traits[i]['trait_id'],
                 'icon': '$assetsUrl$newIcon',
-                'description': set11Traits[i]['desc'],
+                'description': set11Traits[i]['tooltip_text'],
                 'step': [
                   {
                     'description': '5% par spectre',
@@ -80,67 +82,66 @@ class Synergies {
   }
 
   Future<List<Synergies>?> getSynergyByName(arraySynergy) async {
-    final result = await http.get(Uri.parse('https://raw.communitydragon.org/latest/cdragon/tft/fr_fr.json'));
+    final result = await http.get(Uri.parse('https://raw.communitydragon.org/14.8/plugins/rcp-be-lol-game-data/global/fr_fr/v1/tfttraits.json'));
 
     final json = jsonDecode(utf8.decode(result.bodyBytes));
 
-    final set11Traits = json['setData'][2]['traits'];
+    final set11Traits = json;
     final arraySynergies = [];
 
     for(int i = 0; i < set11Traits.length; i++)
     {
-      for(int j = 0; j < arraySynergy.length; j++){
 
-        if(set11Traits[i]['name'].contains(arraySynergy[j]))
-        {
-          if(set11Traits[i]['apiName'].contains('TFT11_'))
+      if(set11Traits[i]['trait_id'].contains('TFT11_'))
+      {
+        for(int j = 0; j < arraySynergy.length; j++){
+
+          if(equals(set11Traits[i]['display_name'],arraySynergy[j]))
           {
-            const find = '.tex';
-            const replaceWith = '.png';
-            const assetsUrl = 'https://raw.communitydragon.org/latest/game/';
+              const find = '.tex';
+              const replaceWith = '.png';
+              const assetsUrl = 'https://raw.communitydragon.org/latest/game/';
 
-            final newIcon = set11Traits[i]['icon']?.replaceAll(find, replaceWith).toLowerCase();
+              var newIcon = set11Traits[i]['icon_path']?.replaceAll(find, replaceWith).toLowerCase().replaceFirst('/lol-game-data/assets/','');
 
-            if(newIcon != null)
-            {
-              arraySynergies.add(
-                  {
-                    'name': set11Traits[i]['name'],
-                    'apiName': set11Traits[i]['apiName'],
-                    'icon': '$assetsUrl$newIcon',
-                    'description': set11Traits[i]['desc'],
-                    'step': [
-                      {
-                        'description': '5% par spectre',
-                        'minUnit': 2,
-                        'type': 'kBronze'
-                      },
-                      {
-                        'description': '5% par spectre',
-                        'minUnit': 4,
-                        'type': 'kSilver'
-                      },
-                      {
-                        'description': '5% par spectre',
-                        'minUnit': 6,
-                        'type': 'kGold'
-                      },
-                      {
-                        'description': '5% par spectre',
-                        'minUnit': 8,
-                        'type': 'kGold'
-                      }
-                    ],
-                    'champions': []
+              if(newIcon != null)
+              {
+                arraySynergies.add(
+                    {
+                      'name': set11Traits[i]['display_name'],
+                      'apiName': set11Traits[i]['trait_id'],
+                      'icon': '$assetsUrl$newIcon',
+                      'description': set11Traits[i]['tooltip_text'],
+                      'step': [
+                        {
+                          'description': '5% par spectre',
+                          'minUnit': 2,
+                          'type': 'kBronze'
+                        },
+                        {
+                          'description': '5% par spectre',
+                          'minUnit': 4,
+                          'type': 'kSilver'
+                        },
+                        {
+                          'description': '5% par spectre',
+                          'minUnit': 6,
+                          'type': 'kGold'
+                        },
+                        {
+                          'description': '5% par spectre',
+                          'minUnit': 8,
+                          'type': 'kGold'
+                        }
+                      ],
+                      'champions': []
 
-                  }
-              );
-            }
+                    }
+                );
+              }
           }
         }
       }
-
-
     }
     synergiesList = arraySynergies;
     return List.from(arraySynergies).map((e) => Synergies.fromMap(e)).toList();
