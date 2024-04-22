@@ -5,17 +5,27 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tft/models/champions.dart';
 import 'package:flutter_tft/models/synergies.dart';
 
-class ChampionsList extends StatelessWidget {
+class ChampionsList extends StatefulWidget {
   const ChampionsList({super.key});
+
+  @override
+  State<ChampionsList> createState() => _ChampionsList();
+}
+
+class _ChampionsList extends State<ChampionsList> with AutomaticKeepAliveClientMixin
+{
+  late Future<List<Champions>> champions;
+
+  @override
+  void initState() {
+    super.initState();
+    champions = Champions(name: '', icon: '', traits: null, fullIcon: '', cost: 0).getAllChampions();
+  }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Champions>>(
-        future: Champions(
-            name: '',
-            icon: '',
-            traits: null,
-            fullIcon: '', cost: 0).getAllChampions(),
+        future: champions,
         builder: (context, snapshot) {
           if(snapshot.hasError) {
             return const Text('Une erreur est survenue, veuillez réessayer.');
@@ -116,37 +126,37 @@ class ChampionsList extends StatelessWidget {
 
           final synergies = snapshot.data!;
 
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for(int i = 0; i < synergies.length; i++ ) Column(
                 children: [
-                  for(int i = 0; i < synergies.length; i++ ) Column(
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
                     children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(2),
-                            decoration: BoxDecoration(
-                              color: customColor(cost),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: SizedBox(
-                              width: 16,
-                              height: 16,
-                              child: Image.network(synergies[i].icon),
-                            ),
-                          ),
-                          const SizedBox(width: 3),
-                          Text(synergies[i].name),
-                        ],
+                      Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          color: customColor(cost),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: Image.network(synergies[i].icon),
+                        ),
                       ),
-                      const SizedBox(height: 3),
+                      const SizedBox(width: 3),
+                      Text(synergies[i].name),
                     ],
-                  )
+                  ),
+                  const SizedBox(height: 3),
                 ],
-              );
+              )
+            ],
+          );
         }
     );
   }
@@ -165,4 +175,7 @@ class ChampionsList extends StatelessWidget {
         return const Color(0x42D8810D);
     }
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

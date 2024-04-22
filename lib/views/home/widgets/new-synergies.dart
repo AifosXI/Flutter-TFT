@@ -3,8 +3,22 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_tft/models/synergies.dart';
 
-class NewSynergiesData extends StatelessWidget {
+class NewSynergiesData extends StatefulWidget {
   NewSynergiesData({super.key});
+
+  @override
+  State<NewSynergiesData> createState() => _NewSynergiesData();
+}
+
+class _NewSynergiesData extends State<NewSynergiesData> with AutomaticKeepAliveClientMixin
+{
+  late Future<List<Synergies>> synergies;
+
+  @override
+  void initState() {
+    super.initState();
+    synergies = Synergies(apiName: '', name: '',description: '', icon: '', step: [], champions: []).getAllSynergies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +45,8 @@ class NewSynergiesData extends StatelessWidget {
                 ),
               ],)
         ),
-        FutureBuilder<List<Synergies>?>(future: Synergies(apiName: '', name: '', icon: '', description: '', step: [], champions: []).getAllSynergies(),
+        FutureBuilder<List<Synergies>?>(
+            future: synergies,
             builder: (context, snapshot) {
               if(snapshot.hasError) {
                 print(snapshot);
@@ -41,7 +56,6 @@ class NewSynergiesData extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
               }
               final synergies = snapshot.data!;
-              // print(synergies);
               return SizedBox(
                   height: 100,
                   child: ListView.separated(
@@ -96,6 +110,9 @@ class NewSynergiesData extends StatelessWidget {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class Hexagon extends CustomClipper<Path> {

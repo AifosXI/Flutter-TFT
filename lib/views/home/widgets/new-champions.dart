@@ -3,8 +3,22 @@ import 'package:flutter_tft/models/champions.dart';
 
 import '../../../models/synergies.dart';
 
-class NewChampionsData extends StatelessWidget {
+class NewChampionsData extends StatefulWidget {
   const NewChampionsData({super.key});
+
+  @override
+  State<NewChampionsData> createState() => _NewChampionsData();
+}
+
+class _NewChampionsData extends State<NewChampionsData> with AutomaticKeepAliveClientMixin {
+
+  late Future<List<Champions>> champions;
+
+  @override
+  void initState() {
+    super.initState();
+    champions = Champions(name: '', icon: '', traits: null, fullIcon: '', cost: 0).getAllChampions();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +48,11 @@ class NewChampionsData extends StatelessWidget {
 
         ),
         FutureBuilder<List<Champions>>(
-            future: Champions(
-                name: '',
-                icon: '',
-                traits: null,
-                fullIcon: '', cost: 0).getAllChampions(),
+            future: champions,
             builder: (context, snapshot) {
               if(snapshot.hasError) {
                 return const Text('Une erreur est survenue, veuillez réessayer.');
+
               }
               if (!snapshot.hasData) {
                 return const Center(child: CircularProgressIndicator());
@@ -134,4 +145,7 @@ class NewChampionsData extends StatelessWidget {
         }
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
