@@ -1,304 +1,156 @@
-import 'champions.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Synergies {
-  String name;
-  String icon;
-  String description;
-  List step;
-  List<Champions> champions;
+  String? apiName;
+  String? name;
+  String? icon;
+  String? description;
+  List? step;
+  List<dynamic>? champions;
 
-  Synergies(
-      this.name,
-      this.icon,
-      this.description,
-      this.step,
-      this.champions,
-      );
+  Synergies({
+    required this.apiName,
+    required this.name,
+    required this.icon,
+    required this.description,
+    required this.step,
+    required this.champions,
+  });
 
-  List<Synergies> synergies() {
-    return [
-      Synergies(
-          'Fantôme',
-          'assets/images/Ghostly.png',
-        'Vous gagnez des objets de Guerrier d\'encre uniques.\nLes Guerriers d\'encre gagnent un bonus de dégâts et de réduction des dégâts.',
-        [
-          {
-            'description': '5% par spectre',
-            'minUnit': 2,
-            'type': 'kBronze'
-          },
-          {
-            'description': '5% par spectre',
-            'minUnit': 4,
-            'type': 'kSilver'
-          },
-          {
-            'description': '5% par spectre',
-            'minUnit': 6,
-            'type': 'kGold'
-          },
-          {
-            'description': '5% par spectre',
-            'minUnit': 8,
-            'type': 'kRainbow'
-          }
-        ],
-        [
-          Champions(
-              'Caitlyn',
-              'assets/images/Caitlyn.png',
-              [
-                {'name': 'Fantôme', 'icon': 'assets/images/Ghostly.png'},
-                {'name': 'Sniper', 'icon': 'assets/images/Sniper.png'},
-              ],
-              'assets/images/Caitlyn_full.png',
-              1
-          ),
-          Champions(
-              'Morgana',
-              'assets/images/Morgana.png',
-              [
-                {'name': 'Fantôme', 'icon': 'assets/images/Ghostly.png'},
-                {'name': 'Sage', 'icon': 'assets/images/Sage.png'},
-              ],
-              'assets/images/Caitlyn_full.png',
-              4
-          ),Champions(
-            'Caitlyn',
-            'assets/images/Caitlyn.png',
-            [
-              {'name': 'Fantôme', 'icon': 'assets/images/Ghostly.png'},
-              {'name': 'Sniper', 'icon': 'assets/images/Sniper.png'},
-            ],
-            'assets/images/Caitlyn_full.png',
-            1
-        ),
-          Champions(
-              'Morgana',
-              'assets/images/Morgana.png',
-              [
-                {'name': 'Fantôme', 'icon': 'assets/images/Ghostly.png'},
-                {'name': 'Sage', 'icon': 'assets/images/Sage.png'},
-              ],
-              'assets/images/Caitlyn_full.png',
-              4
-          ),Champions(
-            'Caitlyn',
-            'assets/images/Caitlyn.png',
-            [
-              {'name': 'Fantôme', 'icon': 'assets/images/Ghostly.png'},
-              {'name': 'Sniper', 'icon': 'assets/images/Sniper.png'},
-            ],
-            'assets/images/Caitlyn_full.png',
-            1
-        ),
-          Champions(
-              'Morgana',
-              'assets/images/Morgana.png',
-              [
-                {'name': 'Fantôme', 'icon': 'assets/images/Ghostly.png'},
-                {'name': 'Sage', 'icon': 'assets/images/Sage.png'},
-              ],
-              'assets/images/Caitlyn_full.png',
-              4
-          ),
-        ]
-      ),
-      Synergies(
-          'Sniper',
-          'assets/images/Sniper.png',
-          'Description sniper',
-          [
-            {
-              'description': '5% par spectre',
-              'minUnit': 2,
-              'type': 'kBronze'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 4,
-              'type': 'kSilver'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 6,
-              'type': 'kGold'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 8,
-              'type': 'kGold'
-            }
-          ],
-          [
-          Champions(
-              'Caitlyn',
-              'assets/images/Caitlyn.png',
-              [
-                {'name': 'Fantôme', 'icon': 'assets/images/Ghostly.png'},
-                {'name': 'Sniper', 'icon': 'assets/images/Sniper.png'},
-              ],
-              'assets/images/Caitlyn_full.png',
-              1
-          ),
-        ]
-      ),
-      Synergies(
-          'Sage',
-          'assets/images/Sage.png',
-          'Description sage',
-          [
-            {
-              'description': '5% par spectre',
-              'minUnit': 2,
-              'type': 'kBronze'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 4,
-              'type': 'kSilver'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 6,
-              'type': 'kGold'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 8,
-              'type': 'kGold'
-            }
-          ],
-        [
-          Champions(
-              'Caitlyn',
-              'assets/images/Caitlyn.png',
-              [
-                {'name': 'Fantôme', 'icon': 'assets/images/Ghostly.png'},
-                {'name': 'Sniper', 'icon': 'assets/images/Sniper.png'},
-              ],
-              'assets/images/Caitlyn_full.png',
-              1
-          ),
-        ]
-      ),
-      Synergies(
-          'Ombre',
-          'assets/images/Umbral.png',
-          'Description ombre',
-          [
-            {
-              'description': '5% par spectre',
-              'minUnit': 2,
-              'type': 'kBronze'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 4,
-              'type': 'kSilver'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 6,
-              'type': 'kGold'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 8,
-              'type': 'kGold'
-            }
-          ],
-        [
-          Champions(
-              'Caitlyn',
-              'assets/images/Caitlyn.png',
-              [
-                {'name': 'Fantôme', 'icon': 'assets/images/Ghostly.png'},
-                {'name': 'Sniper', 'icon': 'assets/images/Sniper.png'},
-              ],
-              'assets/images/Caitlyn_full.png',
-              1
-          ),
-        ]
-      ),
-      Synergies(
-          'Bagarreur',
-          'assets/images/Bruiser.png',
-          'Description bagarreur',
-          [
-            {
-              'description': '5% par spectre',
-              'minUnit': 2,
-              'type': 'kBronze'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 4,
-              'type': 'kSilver'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 6,
-              'type': 'kGold'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 8,
-              'type': 'kGold'
-            }
-          ],
-        [
-          Champions(
-              'Caitlyn',
-              'assets/images/Caitlyn.png',
-              [
-                {'name': 'Fantôme', 'icon': 'assets/images/Ghostly.png'},
-                {'name': 'Sniper', 'icon': 'assets/images/Sniper.png'},
-              ],
-              'assets/images/Caitlyn_full.png',
-              1
-          ),
-        ]
-      ),
-      Synergies(
-          'Faucheur',
-          'assets/images/Reaper.png',
-          'Description faucheur',
-          [
-            {
-              'description': '5% par spectre',
-              'minUnit': 2,
-              'type': 'kBronze'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 4,
-              'type': 'kSilver'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 6,
-              'type': 'kGold'
-            },
-            {
-              'description': '5% par spectre',
-              'minUnit': 8,
-              'type': 'kGold'
-            }
-          ],
-        [
-          Champions(
-              'Caitlyn',
-              'assets/images/Caitlyn.png',
-              [
-                {'name': 'Fantôme', 'icon': 'assets/images/Ghostly.png'},
-                {'name': 'Sniper', 'icon': 'assets/images/Sniper.png'},
-              ],
-              'assets/images/Caitlyn_full.png',
-              1
-          ),
-        ]
-      ),
-    ];
+  List<dynamic>? synergiesList;
+
+  Future<List<Synergies>?> getAllSynergies() async {
+    final result = await http.get(Uri.parse('https://raw.communitydragon.org/latest/cdragon/tft/fr_fr.json'));
+
+    final json = jsonDecode(utf8.decode(result.bodyBytes));
+
+    final set11Traits = json['setData'][2]['traits'];
+    final arraySynergies = [];
+
+    for(int i = 0; i < set11Traits.length; i++)
+    {
+      if(set11Traits[i]['apiName'].contains('TFT11_'))
+      {
+        const find = '.tex';
+        const replaceWith = '.png';
+        const assetsUrl = 'https://raw.communitydragon.org/latest/game/';
+
+        final newIcon = set11Traits[i]['icon']?.replaceAll(find, replaceWith).toLowerCase();
+
+        if(newIcon != null)
+        {
+          arraySynergies.add(
+              {
+                'name': set11Traits[i]['name'],
+                'apiName': set11Traits[i]['apiName'],
+                'icon': '$assetsUrl$newIcon',
+                'description': set11Traits[i]['desc'],
+                'step': [
+                  {
+                    'description': '5% par spectre',
+                    'minUnit': 2,
+                    'type': 'kBronze'
+                  },
+                  {
+                    'description': '5% par spectre',
+                    'minUnit': 4,
+                    'type': 'kSilver'
+                  },
+                  {
+                    'description': '5% par spectre',
+                    'minUnit': 6,
+                    'type': 'kGold'
+                  },
+                  {
+                    'description': '5% par spectre',
+                    'minUnit': 8,
+                    'type': 'kGold'
+                  }
+                ],
+                'champions': []
+
+              }
+          );
+        }
+      }
+    }
+    synergiesList = arraySynergies;
+    return List.from(arraySynergies).map((e) => Synergies.fromMap(e)).toList();
   }
+
+  Future<List<Synergies>?> getSynergyByName(arraySynergy) async {
+    final result = await http.get(Uri.parse('https://raw.communitydragon.org/latest/cdragon/tft/fr_fr.json'));
+
+    final json = jsonDecode(utf8.decode(result.bodyBytes));
+
+    final set11Traits = json['setData'][2]['traits'];
+    final arraySynergies = [];
+
+    for(int i = 0; i < set11Traits.length; i++)
+    {
+      for(int j = 0; j < arraySynergy.length; j++){
+
+        if(set11Traits[i]['name'].contains(arraySynergy[j]))
+        {
+          if(set11Traits[i]['apiName'].contains('TFT11_'))
+          {
+            const find = '.tex';
+            const replaceWith = '.png';
+            const assetsUrl = 'https://raw.communitydragon.org/latest/game/';
+
+            final newIcon = set11Traits[i]['icon']?.replaceAll(find, replaceWith).toLowerCase();
+
+            if(newIcon != null)
+            {
+              arraySynergies.add(
+                  {
+                    'name': set11Traits[i]['name'],
+                    'apiName': set11Traits[i]['apiName'],
+                    'icon': '$assetsUrl$newIcon',
+                    'description': set11Traits[i]['desc'],
+                    'step': [
+                      {
+                        'description': '5% par spectre',
+                        'minUnit': 2,
+                        'type': 'kBronze'
+                      },
+                      {
+                        'description': '5% par spectre',
+                        'minUnit': 4,
+                        'type': 'kSilver'
+                      },
+                      {
+                        'description': '5% par spectre',
+                        'minUnit': 6,
+                        'type': 'kGold'
+                      },
+                      {
+                        'description': '5% par spectre',
+                        'minUnit': 8,
+                        'type': 'kGold'
+                      }
+                    ],
+                    'champions': []
+
+                  }
+              );
+            }
+          }
+        }
+      }
+
+
+    }
+    synergiesList = arraySynergies;
+    return List.from(arraySynergies).map((e) => Synergies.fromMap(e)).toList();
+  }
+
+  Synergies.fromMap(Map<String, dynamic> data)
+      : apiName = data['apiName'],
+        name = data['name'],
+        icon = data['icon'],
+        description = data['description'],
+        step = data['step'],
+        champions = data['champions'];
 }

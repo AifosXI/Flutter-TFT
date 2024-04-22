@@ -7,115 +7,116 @@ import 'package:flutter_tft/models/synergies.dart';
 class SynergiesList extends StatelessWidget {
   SynergiesList({super.key});
 
-  final List<Synergies> synergies = Synergies('', '', '', [], []).synergies();
+  // final List<Synergies> synergies = Synergies('', '', '', [], []).synergies();
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.only(bottom: kBottomNavigationBarHeight),
-        child: DefaultTextStyle(
-          style: const TextStyle(color: Colors.white, fontSize: 12, fontFamily: "GillSansMT"),
-          child:Column(
-              children: [
-                for(int i = 0; i < synergies.length; i++) Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            image: const DecorationImage(
-                              image: AssetImage('assets/images/Morgana.png'),
-                              fit: BoxFit.cover,
-                              colorFilter: ColorFilter.mode(
-                                  Color(0x1A56496B),
-                                  BlendMode.dstATop
-                              ),
-                            ),
-                            color: const Color(0xFF56496B)
-                          ),
-                          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: Image.asset(synergies[i].icon),
-                                  ),
-                                  Text(synergies[i].name, style: const TextStyle(fontWeight: FontWeight.w700)),
-                                  SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: Image.asset(synergies[i].icon),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 30),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    children: [
-                                      const Text('Palier', style: TextStyle(fontWeight: FontWeight.w700)),
-                                      const SizedBox(height: 20),
-                                      for (int j = 0; j < synergies[i].step.length; j++) Column(
-                                        children: [
-                                          getSynergyStep(synergies[i].step[j]),
-                                          const SizedBox(height: 10),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      const Text('Description', style: TextStyle(fontWeight: FontWeight.w700)),
-                                      const SizedBox(height: 20),
-                                      SizedBox(width: 180, child: Text(synergies[i].description)),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 30),
-                              const Text('Champions', style: TextStyle(fontWeight: FontWeight.w700)),
-                              const SizedBox(height: 20),
-                              getChampions(synergies[i]),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: Image.asset(synergies[i].icon),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: Image.asset(synergies[i].icon),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(height: 30),
-                  ],
-                ),
-              ]
-          ),
-        )
-    );
+    return Text('liste des synergies');
+    //   SingleChildScrollView(
+    //   padding: const EdgeInsets.only(bottom: kBottomNavigationBarHeight),
+    //     child: DefaultTextStyle(
+    //       style: const TextStyle(color: Colors.white, fontSize: 12, fontFamily: "GillSansMT"),
+    //       child:Column(
+    //           children: [
+    //             for(int i = 0; i < synergies.length; i++) Column(
+    //               children: [
+    //                 Stack(
+    //                   children: [
+    //                     Container(
+    //                       decoration: BoxDecoration(
+    //                         borderRadius: BorderRadius.circular(12),
+    //                         image: const DecorationImage(
+    //                           image: AssetImage('assets/images/Morgana.png'),
+    //                           fit: BoxFit.cover,
+    //                           colorFilter: ColorFilter.mode(
+    //                               Color(0x1A56496B),
+    //                               BlendMode.dstATop
+    //                           ),
+    //                         ),
+    //                         color: const Color(0xFF56496B)
+    //                       ),
+    //                       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+    //                       child: Column(
+    //                         mainAxisAlignment: MainAxisAlignment.start,
+    //                         children: [
+    //                           Row(
+    //                             crossAxisAlignment: CrossAxisAlignment.center,
+    //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                             mainAxisSize: MainAxisSize.max,
+    //                             children: [
+    //                               SizedBox(
+    //                                 height: 20,
+    //                                 width: 20,
+    //                                 child: Image.asset(synergies[i].icon),
+    //                               ),
+    //                               Text(synergies[i].name, style: const TextStyle(fontWeight: FontWeight.w700)),
+    //                               SizedBox(
+    //                                 height: 20,
+    //                                 width: 20,
+    //                                 child: Image.asset(synergies[i].icon),
+    //                               ),
+    //                             ],
+    //                           ),
+    //                           const SizedBox(height: 30),
+    //                           Row(
+    //                             mainAxisSize: MainAxisSize.max,
+    //                             crossAxisAlignment: CrossAxisAlignment.start,
+    //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                             children: [
+    //                               Column(
+    //                                 children: [
+    //                                   const Text('Palier', style: TextStyle(fontWeight: FontWeight.w700)),
+    //                                   const SizedBox(height: 20),
+    //                                   for (int j = 0; j < synergies[i].step.length; j++) Column(
+    //                                     children: [
+    //                                       getSynergyStep(synergies[i].step[j]),
+    //                                       const SizedBox(height: 10),
+    //                                     ],
+    //                                   ),
+    //                                 ],
+    //                               ),
+    //                               Column(
+    //                                 children: [
+    //                                   const Text('Description', style: TextStyle(fontWeight: FontWeight.w700)),
+    //                                   const SizedBox(height: 20),
+    //                                   SizedBox(width: 180, child: Text(synergies[i].description)),
+    //                                 ],
+    //                               ),
+    //                             ],
+    //                           ),
+    //                           const SizedBox(height: 30),
+    //                           const Text('Champions', style: TextStyle(fontWeight: FontWeight.w700)),
+    //                           const SizedBox(height: 20),
+    //                           getChampions(synergies[i]),
+    //                           Row(
+    //                             crossAxisAlignment: CrossAxisAlignment.center,
+    //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                             mainAxisSize: MainAxisSize.max,
+    //                             children: [
+    //                               SizedBox(
+    //                                 height: 20,
+    //                                 width: 20,
+    //                                 child: Image.asset(synergies[i].icon),
+    //                               ),
+    //                               SizedBox(
+    //                                 height: 20,
+    //                                 width: 20,
+    //                                 child: Image.asset(synergies[i].icon),
+    //                               ),
+    //                             ],
+    //                           ),
+    //                         ],
+    //                       ),
+    //                     )
+    //                   ],
+    //                 ),
+    //                 const SizedBox(height: 30),
+    //               ],
+    //             ),
+    //           ]
+    //       ),
+    //     )
+    // );
   }
 
   Widget getChampions(synergy) {
