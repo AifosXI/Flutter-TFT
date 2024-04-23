@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_tft/views/auth/signin_view.dart';
 import 'package:flutter_tft/views/auth/signup_view.dart';
+import 'package:flutter_tft/views/auth/signin_view.dart';
 import 'package:flutter_tft/views/home/homepage_content.dart';
 import 'package:flutter_tft/views/informations/informations.dart';
 

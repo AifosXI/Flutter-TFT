@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class CustomInput extends StatelessWidget {
   final IconData icon;
   final String hintText;
+  final Function(String?)? onSaved;
 
-  const CustomInput(this.hintText, this.icon, {super.key});
+  const CustomInput(this.hintText, this.icon, {super.key, this.onSaved});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,7 @@ class CustomInput extends StatelessWidget {
               prefixIcon: Icon(icon, color: Colors.white, size: 20,)
           ),
           style: const TextStyle(color: Colors.white),
+          onSaved: onSaved,
         ),
         const SizedBox(height: 20),
       ],
