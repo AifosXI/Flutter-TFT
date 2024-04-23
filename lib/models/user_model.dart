@@ -1,5 +1,5 @@
 class User {
-  String id;
+  int id;
   String email;
   String username;
   User ({
@@ -9,7 +9,7 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json)
-    : id = json['id'],
+    : id = json['id'] as int,
       username = json['username'],
       email = json['email'];
 }
