@@ -18,6 +18,14 @@ Les informations affichées proviennent de plusieurs fichiers JSON conçu par CD
 - La globalité des informations : https://raw.communitydragon.org/latest/cdragon/tft/fr_fr.json
 - Uniquement les synergies : https://raw.communitydragon.org/14.8/plugins/rcp-be-lol-game-data/global/fr_fr/v1/tfttraits.json
 
+## Information à prendre en compte lors des tests
+
+- Nous pouvons émuler l'application sur un vrai téléphone mais nous ne pouvons ni créer de compte ni se connecter pour un refus de connexion cependant, cela fonctionne lorsque l'on émule sur ordinateur.
+- Il ne faut pas cliquer sur le dernier emplacement de la BottomNavigationBar avant d'être connecté sinon une erreur sera affichée car nous n'avons pas réussi à tester avec le provider si l'utilisateur est connecté ou non.
+- Pour créer un compte il suffit de cliquer sur le bouton au centre avec un plus nous serons ensuite redirigé vers le profil et le dernier bouton de la BottomNavigationBar.
+
+## Setup
+
 Pour que le back Dart puisse se connecter à la base de données il faut ajouter cette ligne dans le fichier .env
 ```dotenv
 DATABASE_URL="mysql://user:password@localhost:3306/dbName"
@@ -27,6 +35,7 @@ Pour lancer l'API il faut se positionner dans le dossier "api" et lancer les com
 npm install
 dart pub get
 npx prisma db push
+#Si dart_frog n'est pas reconnu il faut ajouter le cli : dart pub global activate dart_frog_cli
 dart_frog dev
 ```
 
